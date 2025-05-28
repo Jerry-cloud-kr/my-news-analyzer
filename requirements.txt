@@ -4,3 +4,4 @@ sentence-transformers
 openai
 google-generativeai
 feedparser
+lxml
