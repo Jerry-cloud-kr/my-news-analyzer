@@ -236,6 +236,3 @@ if st.button("📰 기사 분석 시작", use_container_width=True, key="analyze
             st.error(f"기사 처리 중 오류 발생: {str(e)}")
             print(f"전체 오류: {e}") 
             st.caption("URL을 확인하시거나, 다른 기사를 시도해보세요. 일부 웹사이트는 외부 접근을 통한 기사 수집을 허용하지 않을 수 있습니다.")
-
-elif st.button("📰 기사 분석 시작", use_container_width=True) and not url: # URL 없이 버튼만 눌렸을 때
-    st.warning("뉴스 기사 URL을 입력해주세요.")
