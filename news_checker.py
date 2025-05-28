@@ -153,7 +153,7 @@ st.caption("본문 요약은 Gemini AI, 키워드 추출 및 프레이밍 분석
 url = st.text_input("뉴스 기사 URL을 입력하세요:", placeholder="예: https://www.example.com/news/article-link")
 
 # 버튼은 한 번만 생성합니다.
-if st.button("📰 기사 분석 시작", use_container_width=True):
+if st.button("📰 기사 분석 시작", use_container_width=True, key="analyze_button_main"):
     if not url:
         st.warning("뉴스 기사 URL을 입력해주세요.")
     elif not (url.startswith('http://') or url.startswith('https://')):
