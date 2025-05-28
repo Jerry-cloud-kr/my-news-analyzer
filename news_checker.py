@@ -152,13 +152,17 @@ st.caption("본문 요약은 Gemini AI, 키워드 추출 및 프레이밍 분석
 
 url = st.text_input("뉴스 기사 URL을 입력하세요:", placeholder="예: https://www.example.com/news/article-link")
 
-if st.button("📰 기사 분석 시작", use_container_width=True) and url: # 버튼 텍스트 변경 및 url 유효성 체크 추가
-    if not (url.startswith('http://') or url.startswith('https://')):
+# 버튼은 한 번만 생성합니다.
+if st.button("📰 기사 분석 시작", use_container_width=True): # key를 추가하여 명시적으로 구분할 수도 있습니다: key="analyze_button"
+    if not url: # 버튼이 눌렸는데 URL이 없는 경우
+        st.warning("뉴스 기사 URL을 입력해주세요.")
+    elif not (url.startswith('http://') or url.startswith('https://')): # URL 형식 오류
         st.warning("올바른 URL 형식이 아닙니다. 'http://' 또는 'https://'로 시작해야 합니다.")
-    else:
+    else: # URL이 있고 형식도 맞는 경우 (정상 분석 로직)
         try:
             with st.spinner("기사를 가져와 AI가 분석 중입니다... 잠시 기다려주세요."):
-                article = Article(url, language='ko') # newspaper3k에 언어 명시
+                # ... (이하 기존 분석 로직 그대로) ...
+                article = Article(url, language='ko')
                 article.download()
                 article.parse()
 
@@ -230,7 +234,7 @@ if st.button("📰 기사 분석 시작", use_container_width=True) and url: # �
 
         except Exception as e:
             st.error(f"기사 처리 중 오류 발생: {str(e)}")
-            print(f"전체 오류: {e}") # 콘솔에 전체 오류 출력
+            print(f"전체 오류: {e}") 
             st.caption("URL을 확인하시거나, 다른 기사를 시도해보세요. 일부 웹사이트는 외부 접근을 통한 기사 수집을 허용하지 않을 수 있습니다.")
 
 elif st.button("📰 기사 분석 시작", use_container_width=True) and not url: # URL 없이 버튼만 눌렸을 때
