@@ -153,12 +153,12 @@ st.caption("본문 요약은 Gemini AI, 키워드 추출 및 프레이밍 분석
 url = st.text_input("뉴스 기사 URL을 입력하세요:", placeholder="예: https://www.example.com/news/article-link")
 
 # 버튼은 한 번만 생성합니다.
-if st.button("📰 기사 분석 시작", use_container_width=True): # key를 추가하여 명시적으로 구분할 수도 있습니다: key="analyze_button"
-    if not url: # 버튼이 눌렸는데 URL이 없는 경우
+if st.button("📰 기사 분석 시작", use_container_width=True):
+    if not url:
         st.warning("뉴스 기사 URL을 입력해주세요.")
-    elif not (url.startswith('http://') or url.startswith('https://')): # URL 형식 오류
+    elif not (url.startswith('http://') or url.startswith('https://')):
         st.warning("올바른 URL 형식이 아닙니다. 'http://' 또는 'https://'로 시작해야 합니다.")
-    else: # URL이 있고 형식도 맞는 경우 (정상 분석 로직)
+    else:
         try:
             with st.spinner("기사를 가져와 AI가 분석 중입니다... 잠시 기다려주세요."):
                 # ... (이하 기존 분석 로직 그대로) ...
