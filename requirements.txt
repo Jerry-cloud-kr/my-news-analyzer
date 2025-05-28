@@ -4,4 +4,4 @@ sentence-transformers
 openai
 google-generativeai
 feedparser
-lxml
+lxml[html_clean]
